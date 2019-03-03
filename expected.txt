@@ -1,0 +1,303 @@
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Writing to /dev/fibonacci, returned the sequence 1
+Reading from /dev/fibonacci at offset 0, returned the sequence 0.
+Reading from /dev/fibonacci at offset 1, returned the sequence 1.
+Reading from /dev/fibonacci at offset 2, returned the sequence 1.
+Reading from /dev/fibonacci at offset 3, returned the sequence 2.
+Reading from /dev/fibonacci at offset 4, returned the sequence 3.
+Reading from /dev/fibonacci at offset 5, returned the sequence 5.
+Reading from /dev/fibonacci at offset 6, returned the sequence 8.
+Reading from /dev/fibonacci at offset 7, returned the sequence 13.
+Reading from /dev/fibonacci at offset 8, returned the sequence 21.
+Reading from /dev/fibonacci at offset 9, returned the sequence 34.
+Reading from /dev/fibonacci at offset 10, returned the sequence 55.
+Reading from /dev/fibonacci at offset 11, returned the sequence 89.
+Reading from /dev/fibonacci at offset 12, returned the sequence 144.
+Reading from /dev/fibonacci at offset 13, returned the sequence 233.
+Reading from /dev/fibonacci at offset 14, returned the sequence 377.
+Reading from /dev/fibonacci at offset 15, returned the sequence 610.
+Reading from /dev/fibonacci at offset 16, returned the sequence 987.
+Reading from /dev/fibonacci at offset 17, returned the sequence 1597.
+Reading from /dev/fibonacci at offset 18, returned the sequence 2584.
+Reading from /dev/fibonacci at offset 19, returned the sequence 4181.
+Reading from /dev/fibonacci at offset 20, returned the sequence 6765.
+Reading from /dev/fibonacci at offset 21, returned the sequence 10946.
+Reading from /dev/fibonacci at offset 22, returned the sequence 17711.
+Reading from /dev/fibonacci at offset 23, returned the sequence 28657.
+Reading from /dev/fibonacci at offset 24, returned the sequence 46368.
+Reading from /dev/fibonacci at offset 25, returned the sequence 75025.
+Reading from /dev/fibonacci at offset 26, returned the sequence 121393.
+Reading from /dev/fibonacci at offset 27, returned the sequence 196418.
+Reading from /dev/fibonacci at offset 28, returned the sequence 317811.
+Reading from /dev/fibonacci at offset 29, returned the sequence 514229.
+Reading from /dev/fibonacci at offset 30, returned the sequence 832040.
+Reading from /dev/fibonacci at offset 31, returned the sequence 1346269.
+Reading from /dev/fibonacci at offset 32, returned the sequence 2178309.
+Reading from /dev/fibonacci at offset 33, returned the sequence 3524578.
+Reading from /dev/fibonacci at offset 34, returned the sequence 5702887.
+Reading from /dev/fibonacci at offset 35, returned the sequence 9227465.
+Reading from /dev/fibonacci at offset 36, returned the sequence 14930352.
+Reading from /dev/fibonacci at offset 37, returned the sequence 24157817.
+Reading from /dev/fibonacci at offset 38, returned the sequence 39088169.
+Reading from /dev/fibonacci at offset 39, returned the sequence 63245986.
+Reading from /dev/fibonacci at offset 40, returned the sequence 102334155.
+Reading from /dev/fibonacci at offset 41, returned the sequence 165580141.
+Reading from /dev/fibonacci at offset 42, returned the sequence 267914296.
+Reading from /dev/fibonacci at offset 43, returned the sequence 433494437.
+Reading from /dev/fibonacci at offset 44, returned the sequence 701408733.
+Reading from /dev/fibonacci at offset 45, returned the sequence 1134903170.
+Reading from /dev/fibonacci at offset 46, returned the sequence 1836311903.
+Reading from /dev/fibonacci at offset 47, returned the sequence 2971215073.
+Reading from /dev/fibonacci at offset 48, returned the sequence 4807526976.
+Reading from /dev/fibonacci at offset 49, returned the sequence 7778742049.
+Reading from /dev/fibonacci at offset 50, returned the sequence 12586269025.
+Reading from /dev/fibonacci at offset 51, returned the sequence 20365011074.
+Reading from /dev/fibonacci at offset 52, returned the sequence 32951280099.
+Reading from /dev/fibonacci at offset 53, returned the sequence 53316291173.
+Reading from /dev/fibonacci at offset 54, returned the sequence 86267571272.
+Reading from /dev/fibonacci at offset 55, returned the sequence 139583862445.
+Reading from /dev/fibonacci at offset 56, returned the sequence 225851433717.
+Reading from /dev/fibonacci at offset 57, returned the sequence 365435296162.
+Reading from /dev/fibonacci at offset 58, returned the sequence 591286729879.
+Reading from /dev/fibonacci at offset 59, returned the sequence 956722026041.
+Reading from /dev/fibonacci at offset 60, returned the sequence 1548008755920.
+Reading from /dev/fibonacci at offset 61, returned the sequence 2504730781961.
+Reading from /dev/fibonacci at offset 62, returned the sequence 4052739537881.
+Reading from /dev/fibonacci at offset 63, returned the sequence 6557470319842.
+Reading from /dev/fibonacci at offset 64, returned the sequence 10610209857723.
+Reading from /dev/fibonacci at offset 65, returned the sequence 17167680177565.
+Reading from /dev/fibonacci at offset 66, returned the sequence 27777890035288.
+Reading from /dev/fibonacci at offset 67, returned the sequence 44945570212853.
+Reading from /dev/fibonacci at offset 68, returned the sequence 72723460248141.
+Reading from /dev/fibonacci at offset 69, returned the sequence 117669030460994.
+Reading from /dev/fibonacci at offset 70, returned the sequence 190392490709135.
+Reading from /dev/fibonacci at offset 71, returned the sequence 308061521170129.
+Reading from /dev/fibonacci at offset 72, returned the sequence 498454011879264.
+Reading from /dev/fibonacci at offset 73, returned the sequence 806515533049393.
+Reading from /dev/fibonacci at offset 74, returned the sequence 1304969544928657.
+Reading from /dev/fibonacci at offset 75, returned the sequence 2111485077978050.
+Reading from /dev/fibonacci at offset 76, returned the sequence 3416454622906707.
+Reading from /dev/fibonacci at offset 77, returned the sequence 5527939700884757.
+Reading from /dev/fibonacci at offset 78, returned the sequence 8944394323791464.
+Reading from /dev/fibonacci at offset 79, returned the sequence 14472334024676221.
+Reading from /dev/fibonacci at offset 80, returned the sequence 23416728348467685.
+Reading from /dev/fibonacci at offset 81, returned the sequence 37889062373143906.
+Reading from /dev/fibonacci at offset 82, returned the sequence 61305790721611591.
+Reading from /dev/fibonacci at offset 83, returned the sequence 99194853094755497.
+Reading from /dev/fibonacci at offset 84, returned the sequence 160500643816367088.
+Reading from /dev/fibonacci at offset 85, returned the sequence 259695496911122585.
+Reading from /dev/fibonacci at offset 86, returned the sequence 420196140727489673.
+Reading from /dev/fibonacci at offset 87, returned the sequence 679891637638612258.
+Reading from /dev/fibonacci at offset 88, returned the sequence 1100087778366101931.
+Reading from /dev/fibonacci at offset 89, returned the sequence 1779979416004714189.
+Reading from /dev/fibonacci at offset 90, returned the sequence 2880067194370816120.
+Reading from /dev/fibonacci at offset 91, returned the sequence 4660046610375530309.
+Reading from /dev/fibonacci at offset 92, returned the sequence 7540113804746346429.
+Reading from /dev/fibonacci at offset 93, returned the sequence 7540113804746346429.
+Reading from /dev/fibonacci at offset 94, returned the sequence 7540113804746346429.
+Reading from /dev/fibonacci at offset 95, returned the sequence 7540113804746346429.
+Reading from /dev/fibonacci at offset 96, returned the sequence 7540113804746346429.
+Reading from /dev/fibonacci at offset 97, returned the sequence 7540113804746346429.
+Reading from /dev/fibonacci at offset 98, returned the sequence 7540113804746346429.
+Reading from /dev/fibonacci at offset 99, returned the sequence 7540113804746346429.
+Reading from /dev/fibonacci at offset 100, returned the sequence 7540113804746346429.
+Reading from /dev/fibonacci at offset 100, returned the sequence 7540113804746346429.
+Reading from /dev/fibonacci at offset 99, returned the sequence 7540113804746346429.
+Reading from /dev/fibonacci at offset 98, returned the sequence 7540113804746346429.
+Reading from /dev/fibonacci at offset 97, returned the sequence 7540113804746346429.
+Reading from /dev/fibonacci at offset 96, returned the sequence 7540113804746346429.
+Reading from /dev/fibonacci at offset 95, returned the sequence 7540113804746346429.
+Reading from /dev/fibonacci at offset 94, returned the sequence 7540113804746346429.
+Reading from /dev/fibonacci at offset 93, returned the sequence 7540113804746346429.
+Reading from /dev/fibonacci at offset 92, returned the sequence 7540113804746346429.
+Reading from /dev/fibonacci at offset 91, returned the sequence 4660046610375530309.
+Reading from /dev/fibonacci at offset 90, returned the sequence 2880067194370816120.
+Reading from /dev/fibonacci at offset 89, returned the sequence 1779979416004714189.
+Reading from /dev/fibonacci at offset 88, returned the sequence 1100087778366101931.
+Reading from /dev/fibonacci at offset 87, returned the sequence 679891637638612258.
+Reading from /dev/fibonacci at offset 86, returned the sequence 420196140727489673.
+Reading from /dev/fibonacci at offset 85, returned the sequence 259695496911122585.
+Reading from /dev/fibonacci at offset 84, returned the sequence 160500643816367088.
+Reading from /dev/fibonacci at offset 83, returned the sequence 99194853094755497.
+Reading from /dev/fibonacci at offset 82, returned the sequence 61305790721611591.
+Reading from /dev/fibonacci at offset 81, returned the sequence 37889062373143906.
+Reading from /dev/fibonacci at offset 80, returned the sequence 23416728348467685.
+Reading from /dev/fibonacci at offset 79, returned the sequence 14472334024676221.
+Reading from /dev/fibonacci at offset 78, returned the sequence 8944394323791464.
+Reading from /dev/fibonacci at offset 77, returned the sequence 5527939700884757.
+Reading from /dev/fibonacci at offset 76, returned the sequence 3416454622906707.
+Reading from /dev/fibonacci at offset 75, returned the sequence 2111485077978050.
+Reading from /dev/fibonacci at offset 74, returned the sequence 1304969544928657.
+Reading from /dev/fibonacci at offset 73, returned the sequence 806515533049393.
+Reading from /dev/fibonacci at offset 72, returned the sequence 498454011879264.
+Reading from /dev/fibonacci at offset 71, returned the sequence 308061521170129.
+Reading from /dev/fibonacci at offset 70, returned the sequence 190392490709135.
+Reading from /dev/fibonacci at offset 69, returned the sequence 117669030460994.
+Reading from /dev/fibonacci at offset 68, returned the sequence 72723460248141.
+Reading from /dev/fibonacci at offset 67, returned the sequence 44945570212853.
+Reading from /dev/fibonacci at offset 66, returned the sequence 27777890035288.
+Reading from /dev/fibonacci at offset 65, returned the sequence 17167680177565.
+Reading from /dev/fibonacci at offset 64, returned the sequence 10610209857723.
+Reading from /dev/fibonacci at offset 63, returned the sequence 6557470319842.
+Reading from /dev/fibonacci at offset 62, returned the sequence 4052739537881.
+Reading from /dev/fibonacci at offset 61, returned the sequence 2504730781961.
+Reading from /dev/fibonacci at offset 60, returned the sequence 1548008755920.
+Reading from /dev/fibonacci at offset 59, returned the sequence 956722026041.
+Reading from /dev/fibonacci at offset 58, returned the sequence 591286729879.
+Reading from /dev/fibonacci at offset 57, returned the sequence 365435296162.
+Reading from /dev/fibonacci at offset 56, returned the sequence 225851433717.
+Reading from /dev/fibonacci at offset 55, returned the sequence 139583862445.
+Reading from /dev/fibonacci at offset 54, returned the sequence 86267571272.
+Reading from /dev/fibonacci at offset 53, returned the sequence 53316291173.
+Reading from /dev/fibonacci at offset 52, returned the sequence 32951280099.
+Reading from /dev/fibonacci at offset 51, returned the sequence 20365011074.
+Reading from /dev/fibonacci at offset 50, returned the sequence 12586269025.
+Reading from /dev/fibonacci at offset 49, returned the sequence 7778742049.
+Reading from /dev/fibonacci at offset 48, returned the sequence 4807526976.
+Reading from /dev/fibonacci at offset 47, returned the sequence 2971215073.
+Reading from /dev/fibonacci at offset 46, returned the sequence 1836311903.
+Reading from /dev/fibonacci at offset 45, returned the sequence 1134903170.
+Reading from /dev/fibonacci at offset 44, returned the sequence 701408733.
+Reading from /dev/fibonacci at offset 43, returned the sequence 433494437.
+Reading from /dev/fibonacci at offset 42, returned the sequence 267914296.
+Reading from /dev/fibonacci at offset 41, returned the sequence 165580141.
+Reading from /dev/fibonacci at offset 40, returned the sequence 102334155.
+Reading from /dev/fibonacci at offset 39, returned the sequence 63245986.
+Reading from /dev/fibonacci at offset 38, returned the sequence 39088169.
+Reading from /dev/fibonacci at offset 37, returned the sequence 24157817.
+Reading from /dev/fibonacci at offset 36, returned the sequence 14930352.
+Reading from /dev/fibonacci at offset 35, returned the sequence 9227465.
+Reading from /dev/fibonacci at offset 34, returned the sequence 5702887.
+Reading from /dev/fibonacci at offset 33, returned the sequence 3524578.
+Reading from /dev/fibonacci at offset 32, returned the sequence 2178309.
+Reading from /dev/fibonacci at offset 31, returned the sequence 1346269.
+Reading from /dev/fibonacci at offset 30, returned the sequence 832040.
+Reading from /dev/fibonacci at offset 29, returned the sequence 514229.
+Reading from /dev/fibonacci at offset 28, returned the sequence 317811.
+Reading from /dev/fibonacci at offset 27, returned the sequence 196418.
+Reading from /dev/fibonacci at offset 26, returned the sequence 121393.
+Reading from /dev/fibonacci at offset 25, returned the sequence 75025.
+Reading from /dev/fibonacci at offset 24, returned the sequence 46368.
+Reading from /dev/fibonacci at offset 23, returned the sequence 28657.
+Reading from /dev/fibonacci at offset 22, returned the sequence 17711.
+Reading from /dev/fibonacci at offset 21, returned the sequence 10946.
+Reading from /dev/fibonacci at offset 20, returned the sequence 6765.
+Reading from /dev/fibonacci at offset 19, returned the sequence 4181.
+Reading from /dev/fibonacci at offset 18, returned the sequence 2584.
+Reading from /dev/fibonacci at offset 17, returned the sequence 1597.
+Reading from /dev/fibonacci at offset 16, returned the sequence 987.
+Reading from /dev/fibonacci at offset 15, returned the sequence 610.
+Reading from /dev/fibonacci at offset 14, returned the sequence 377.
+Reading from /dev/fibonacci at offset 13, returned the sequence 233.
+Reading from /dev/fibonacci at offset 12, returned the sequence 144.
+Reading from /dev/fibonacci at offset 11, returned the sequence 89.
+Reading from /dev/fibonacci at offset 10, returned the sequence 55.
+Reading from /dev/fibonacci at offset 9, returned the sequence 34.
+Reading from /dev/fibonacci at offset 8, returned the sequence 21.
+Reading from /dev/fibonacci at offset 7, returned the sequence 13.
+Reading from /dev/fibonacci at offset 6, returned the sequence 8.
+Reading from /dev/fibonacci at offset 5, returned the sequence 5.
+Reading from /dev/fibonacci at offset 4, returned the sequence 3.
+Reading from /dev/fibonacci at offset 3, returned the sequence 2.
+Reading from /dev/fibonacci at offset 2, returned the sequence 1.
+Reading from /dev/fibonacci at offset 1, returned the sequence 1.
+Reading from /dev/fibonacci at offset 0, returned the sequence 0.
