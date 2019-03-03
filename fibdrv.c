@@ -26,13 +26,13 @@ static DEFINE_MUTEX(dev_fib_mutex);
 
 static long long fib_sequence(long long k)
 {
+    /* FIXME: use clz/ctz and fast algorithms to speed up */
     long long f[k + 2];
-    int i;
 
     f[0] = 0;
     f[1] = 1;
 
-    for (i = 2; i <= k; i++) {
+    for (int i = 2; i <= k; i++) {
         f[i] = f[i - 1] + f[i - 2];
     }
 

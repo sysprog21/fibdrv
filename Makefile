@@ -8,12 +8,13 @@ KDIR := /lib/modules/$(shell uname -r)/build
 PWD := $(shell pwd)
 
 GIT_HOOKS := .git/hooks/applied
-$(GIT_HOOKS):
-	@scripts/install-git-hooks
-	@echo
 
 all: $(GIT_HOOKS) client
 	$(MAKE) -C $(KDIR) M=$(PWD) modules
+
+$(GIT_HOOKS):
+	@scripts/install-git-hooks
+	@echo
 
 clean:
 	$(MAKE) -C $(KDIR) M=$(PWD) clean
