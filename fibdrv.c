@@ -22,7 +22,7 @@ MODULE_VERSION("0.1");
 static dev_t fib_dev = 0;
 static struct cdev *fib_cdev;
 static struct class *fib_class;
-static DEFINE_MUTEX(dev_fib_mutex);
+static DEFINE_MUTEX(fib_mutex);
 
 static long long fib_sequence(long long k)
 {
@@ -41,7 +41,7 @@ static long long fib_sequence(long long k)
 
 static int fib_open(struct inode *inode, struct file *file)
 {
-    if (!mutex_trylock(&dev_fib_mutex)) {
+    if (!mutex_trylock(&fib_mutex)) {
         printk(KERN_ALERT "fibdrv is in use");
         return -EBUSY;
     }
@@ -50,7 +50,7 @@ static int fib_open(struct inode *inode, struct file *file)
 
 static int fib_release(struct inode *inode, struct file *file)
 {
-    mutex_unlock(&dev_fib_mutex);
+    mutex_unlock(&fib_mutex);
     return 0;
 }
 
@@ -108,7 +108,7 @@ static int __init init_fib_dev(void)
 {
     int rc = 0;
 
-    mutex_init(&dev_fib_mutex);
+    mutex_init(&fib_mutex);
 
     // Let's register the device
     // This will dynamically allocate the major number
@@ -161,7 +161,7 @@ failed_cdev:
 
 static void __exit exit_fib_dev(void)
 {
-    mutex_destroy(&dev_fib_mutex);
+    mutex_destroy(&fib_mutex);
     device_destroy(fib_class, fib_dev);
     class_destroy(fib_class);
     cdev_del(fib_cdev);
