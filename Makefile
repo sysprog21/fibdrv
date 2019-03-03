@@ -7,7 +7,12 @@ ccflags-y := -std=gnu99 -Wno-declaration-after-statement
 KDIR := /lib/modules/$(shell uname -r)/build
 PWD := $(shell pwd)
 
-all: client
+GIT_HOOKS := .git/hooks/applied
+$(GIT_HOOKS):
+	@scripts/install-git-hooks
+	@echo
+
+all: $(GIT_HOOKS) client
 	$(MAKE) -C $(KDIR) M=$(PWD) modules
 
 clean:
