@@ -50,4 +50,21 @@ if [ $? -ne 0 ]; then
     echo
 fi
 
+if [ ${RETURN} -ne 0 ]; then
+	if tty >/dev/null 2>&1; then
+	  TTY=$(tty)
+	else
+	  TTY=/dev/tty
+	fi
+
+	echo -en "Some checks fail on your source code.\nIf you insist to commit, you might face angry reviewers.\nProceed anyway? [N/y/?] "
+	# Read the answer
+	read REPLY < "$TTY"
+
+	case "$REPLY" in
+	Y*|y*) RETURN=0 ;;
+	*)     ;; # fall to fail
+	esac
+fi
+
 exit $RETURN
