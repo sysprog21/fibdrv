@@ -37,5 +37,5 @@ check: all
 	$(MAKE) load
 	sudo ./client > out
 	$(MAKE) unload
-	@diff -u out expected.txt && $(call pass)
+	@diff -u out scripts/expected.txt && $(call pass)
 	@scripts/verify.py
