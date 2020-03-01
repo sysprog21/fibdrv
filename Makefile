@@ -38,3 +38,4 @@ check: all
 	sudo ./client > out
 	$(MAKE) unload
 	@diff -u out expected.txt && $(call pass)
+	@scripts/verify.py
