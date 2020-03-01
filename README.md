@@ -10,3 +10,11 @@ fibonacci number.
 * [Character device drivers](https://linux-kernel-labs.github.io/master/labs/device_drivers.html#open-and-release)
 * [cdev interface](https://lwn.net/Articles/195805/)
 * [Character device files](https://sysplay.in/blog/linux-device-drivers/2013/06/character-device-files-creation-operations/)
+
+## License
+
+`fibdrv`is released under the MIT license. Use of this source code is governed by
+a MIT-style license that can be found in the LICENSE file.
+
+External source code:
+* [git-good-commit](https://github.com/tommarshall/git-good-commit): MIT License
