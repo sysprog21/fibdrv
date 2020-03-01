@@ -55,7 +55,6 @@ set_editor() {
 
 prompt_help() {
   echo -e "${RED}$(cat <<-EOF
-How to Write a Git Commit Message: https://chris.beams.io/posts/git-commit/
 e - edit commit message
 n - abort commit
 ? - print help
@@ -91,6 +90,12 @@ display_warnings() {
       echo -e " ${YELLOW}- ${ERROR}${NC}"
     done
   done
+
+  echo
+  echo -e "${RED}$(cat <<-EOF
+How to Write a Git Commit Message: https://chris.beams.io/posts/git-commit/
+EOF
+)${NC}"
 }
 
 #
@@ -113,7 +118,7 @@ read_commit_message() {
     [[ $REPLY =~ ^# ]]
     test $? -eq 0 || COMMIT_MSG_LINES+=("$REPLY")
 
-  done < <(cat $COMMIT_MSG_FILE)
+  done < $COMMIT_MSG_FILE
 }
 
 #
@@ -134,22 +139,44 @@ validate_commit_message() {
   # if the commit subject starts with 'fixup! ' there's nothing to validate, we can return here
   [[ $COMMIT_SUBJECT == 'fixup! '* ]] && return;
 
+  # skip first token in subject (e.g. issue ID from bugtracker which is validated otherwise)
+  skipfirsttokeninsubject=$(git config --get hooks.goodcommit.subjectskipfirsttoken || echo 'false')
+  if [ "$skipfirsttokeninsubject" == "true" ]; then
+    COMMIT_SUBJECT_TO_PROCESS=${COMMIT_SUBJECT#* }
+  else
+    COMMIT_SUBJECT_TO_PROCESS=$COMMIT_SUBJECT
+  fi
+
+  # 0. Check spelling
+  # ------------------------------------------------------------------------------
+  ASPELL=$(which aspell)
+  if [ $? -ne 0 ]; then
+      echo "Aspell not installed - unable to check spelling"
+  else
+      LINE_NUMBER=1
+      MISSPELLED_WORDS=`echo "$COMMIT_MSG_LINES[LINE_NUMBER]" | $ASPELL --lang=en --list --home-dir=scripts --personal=aspell-pws`
+      if [ -n "$MISSPELLED_WORDS" ]; then
+        add_warning LINE_NUMBER "Possible misspelled word(s): $MISSPELLED_WORDS"
+      fi
+  fi
+
   # 1. Separate subject from body with a blank line
   # ------------------------------------------------------------------------------
 
   test ${#COMMIT_MSG_LINES[@]} -lt 1 || test -z "${COMMIT_MSG_LINES[1]}"
   test $? -eq 0 || add_warning 2 "Separate subject from body with a blank line"
 
-  # 2. Limit the subject line to 50 characters
+  # 2. Limit the subject line to configured number of characters
   # ------------------------------------------------------------------------------
 
-  test "${#COMMIT_SUBJECT}" -le 50
-  test $? -eq 0 || add_warning 1 "Limit the subject line to 50 characters (${#COMMIT_SUBJECT} chars)"
+  subject_max_length=$(git config --get hooks.goodcommit.subjectmaxlength || echo '60')
+  test "${#COMMIT_SUBJECT}" -le $subject_max_length
+  test $? -eq 0 || add_warning 1 "Limit the subject line to $subject_max_length characters (${#COMMIT_SUBJECT} chars)"
 
   # 3. Capitalize the subject line
   # ------------------------------------------------------------------------------
 
-  [[ ${COMMIT_SUBJECT} =~ ^[[:blank:]]*([[:upper:]]{1}[[:lower:]]*|[[:digit:]]+)([[:blank:]]|[[:punct:]]|$) ]]
+  [[ ${COMMIT_SUBJECT_TO_PROCESS} =~ ^[[:blank:]]*([[:upper:]]{1}[[:lower:]]*|[[:digit:]]+)([[:blank:]]|[[:punct:]]|$) ]]
   test $? -eq 0 || add_warning 1 "Capitalize the subject line"
 
   # 4. Do not end the subject line with a period
@@ -209,7 +236,7 @@ validate_commit_message() {
   shopt -s nocasematch
 
   for BLACKLISTED_WORD in "${IMPERATIVE_MOOD_BLACKLIST[@]}"; do
-    [[ ${COMMIT_SUBJECT} =~ ^[[:blank:]]*$BLACKLISTED_WORD ]]
+    [[ ${COMMIT_SUBJECT_TO_PROCESS} =~ ^[[:blank:]]*$BLACKLISTED_WORD ]]
     test $? -eq 0 && add_warning 1 "Use the imperative mood in the subject line, e.g 'fix' not 'fixes'" && break
   done
 
@@ -235,14 +262,14 @@ validate_commit_message() {
   # 8. Do no write single worded commits
   # ------------------------------------------------------------------------------
 
-  COMMIT_SUBJECT_WORDS=(${COMMIT_SUBJECT})
+  COMMIT_SUBJECT_WORDS=(${COMMIT_SUBJECT_TO_PROCESS})
   test "${#COMMIT_SUBJECT_WORDS[@]}" -gt 1
   test $? -eq 0 || add_warning 1 "Do no write single worded commits"
 
   # 9. Do not start the subject line with whitespace
   # ------------------------------------------------------------------------------
 
-  [[ ${COMMIT_SUBJECT} =~ ^[[:blank:]]+ ]]
+  [[ ${COMMIT_SUBJECT_TO_PROCESS} =~ ^[[:blank:]]+ ]]
   test $? -eq 1 || add_warning 1 "Do not start the subject line with whitespace"
 }
 
