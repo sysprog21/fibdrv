@@ -128,3 +128,10 @@ signal
 srand
 sscanf
 macOS
+Fibonacci
+fib
+pow
+Binet
+Vorobev
+GMP
+MPFR
