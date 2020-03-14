@@ -7,7 +7,7 @@ fibonacci number.
 ## References
 
 * [Writing a simple device driver](https://www.apriorit.com/dev-blog/195-simple-driver-for-linux-os)
-* [Character device drivers](https://linux-kernel-labs.github.io/master/labs/device_drivers.html#open-and-release)
+* [Character device drivers](https://linux-kernel-labs.github.io/refs/heads/master/labs/device_drivers.html)
 * [cdev interface](https://lwn.net/Articles/195805/)
 * [Character device files](https://sysplay.in/blog/linux-device-drivers/2013/06/character-device-files-creation-operations/)
 
