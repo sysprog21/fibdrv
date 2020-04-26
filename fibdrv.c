@@ -127,7 +127,7 @@ static int __init init_fib_dev(void)
         rc = -1;
         goto failed_cdev;
     }
-    cdev_init(fib_cdev, &fib_fops);
+    fib_cdev->ops = &fib_fops;
     rc = cdev_add(fib_cdev, fib_dev, 1);
 
     if (rc < 0) {
