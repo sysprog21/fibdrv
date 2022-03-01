@@ -5,7 +5,7 @@ should have no effect, however reading at offset k should return the kth
 fibonacci number.
 
 ## References
-
+* [The Linux Kernel Module Programming Guide](https://sysprog21.github.io/lkmpg/)
 * [Writing a simple device driver](https://www.apriorit.com/dev-blog/195-simple-driver-for-linux-os)
 * [Character device drivers](https://linux-kernel-labs.github.io/refs/heads/master/labs/device_drivers.html)
 * [cdev interface](https://lwn.net/Articles/195805/)
