@@ -1,7 +1,16 @@
 #!/usr/bin/env bash
 
-CPPCHECK_suppresses="--suppress=missingIncludeSystem"
-CPPCHECK_OPTS="-I. --enable=all --error-exitcode=1 --force $CPPCHECK_suppresses ."
+CPPCHECK_unmatched=
+for f in *.c; do
+    CPPCHECK_unmatched="$CPPCHECK_unmatched --suppress=unmatchedSuppression:$f"
+done
+
+CPPCHECK_suppresses="\
+--suppress=missingIncludeSystem \
+--suppress=noValidConfiguration \
+--suppress=unusedFunction\
+"
+CPPCHECK_OPTS="-I. --enable=all --error-exitcode=1 --force $CPPCHECK_suppresses $CPPCHECK_unmatched ."
 
 RETURN=0
 CLANG_FORMAT=$(which clang-format)
@@ -16,9 +25,26 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+# Expected Cppcheck version is 1.90+
+# First, Cppcheck 2.x
+if [ -z "$($CPPCHECK --version | grep -E '^Cppcheck\s2')" ]; then
+    # Second, Cppcheck 1.x
+    CPPCHECK_VER=$($CPPCHECK --version | sed -Ee 's/Cppcheck 1.([0-9]+)/\1/;q')
+    if [ $CPPCHECK_VER -lt 90 ]; then
+        echo "[!] cppcheck version must be at least 1.90." >&2
+        echo -e "    Check 'Developer Info' for building Cppcheck from source:\n" \
+                "          http://cppcheck.sourceforge.net/devinfo/" >&2
+        exit 1
+    fi
+fi
+
 ASPELL=$(which aspell)
 if [ $? -ne 0 ]; then
     echo "[!] aspell not installed. Unable to do spelling check." >&2
+    exit 1
+fi
+if [ -z "$(aspell dump dicts | grep -E '^en$')" ]; then
+    echo "[!] aspell-en not installed. Unable to do spelling check." >&2
     exit 1
 fi
 
@@ -27,12 +53,17 @@ if [ $? -ne 0 ]; then
     DIFF=diff
 fi
 
-FILES=`git diff --cached --name-only --diff-filter=ACMR | grep -E "\.(c|cpp|h)$"`
+SHA1SUM=$(which sha1sum)
+if [ $? -ne 0 ]; then
+    SHA1SUM=shasum
+fi
+
+FILES=$(git diff --cached --name-only --diff-filter=ACMR | grep -E "\.(c|cpp|h)$")
 for FILE in $FILES; do
-    nf=`git checkout-index --temp $FILE | cut -f 1`
-    tempdir=`mktemp -d` || exit 1
-    newfile=`mktemp ${tempdir}/${nf}.XXXXXX` || exit 1
-    basename=`basename $FILE`
+    nf=$(git checkout-index --temp $FILE | cut -f 1)
+    tempdir=$(mktemp -d) || exit 1
+    newfile=$(mktemp ${tempdir}/${nf}.XXXXXX) || exit 1
+    basename=$(basename $FILE)
 
     source="${tempdir}/${basename}"
     mv $nf $source
@@ -53,6 +84,17 @@ for FILE in $FILES; do
         echo
     fi
 done
+
+if [ ! -z "${FILES[*]}" ]; then
+    echo "Following files need to be cleaned up:"
+    echo "${FILES[*]}"
+fi
+
+$SHA1SUM -c scripts/checksums >/dev/null
+if [ $? -ne 0 ]; then
+    echo "[!] You are not allowed to change the header file queue.h or list.h" >&2
+    exit 1
+fi
 
 # Prevent unsafe functions
 root=$(git rev-parse --show-toplevel)
@@ -79,6 +121,20 @@ if [ $? -ne 0 ]; then
     echo "" >&2
     echo "Fail to pass static analysis." >&2
     echo
+fi
+
+# non-ASCII filenames are not allowed.
+# Cross platform projects tend to avoid non-ASCII filenames; prevent
+# them from being added to the repository.
+if test $(git diff --cached --name-only --diff-filter=A -z $against |
+        LC_ALL=C tr -d '[ -~]\0' | wc -c) != 0
+then
+    cat <<\EOF
+ERROR: Attempt to add a non-ASCII file name.
+This can cause problems if you want to work with people on other platforms.
+To be portable it is advisable to rename the file.
+EOF
+    RETURN=1
 fi
 
 exit $RETURN

@@ -118,6 +118,9 @@ read_commit_message() {
     [[ $REPLY =~ ^# ]]
     test $? -eq 0 || COMMIT_MSG_LINES+=("$REPLY")
 
+    [[ $REPLY =~ "# ------------------------ >8 ------------------------" ]]
+    break
+
   done < $COMMIT_MSG_FILE
 }
 
@@ -154,7 +157,7 @@ validate_commit_message() {
       echo "Aspell not installed - unable to check spelling"
   else
       LINE_NUMBER=1
-      MISSPELLED_WORDS=`echo "$COMMIT_MSG_LINES[LINE_NUMBER]" | $ASPELL --lang=en --list --home-dir=scripts --personal=aspell-pws`
+      MISSPELLED_WORDS=$(echo "$COMMIT_MSG_LINES[LINE_NUMBER]" | $ASPELL --lang=en --list --home-dir=scripts --personal=aspell-pws)
       if [ -n "$MISSPELLED_WORDS" ]; then
         add_warning LINE_NUMBER "Possible misspelled word(s): $MISSPELLED_WORDS"
       fi
@@ -169,7 +172,7 @@ validate_commit_message() {
   # 2. Limit the subject line to configured number of characters
   # ------------------------------------------------------------------------------
 
-  subject_max_length=$(git config --get hooks.goodcommit.subjectmaxlength || echo '60')
+  subject_max_length=$(git config --get hooks.goodcommit.subjectmaxlength || echo '50')
   test "${#COMMIT_SUBJECT}" -le $subject_max_length
   test $? -eq 0 || add_warning 1 "Limit the subject line to $subject_max_length characters (${#COMMIT_SUBJECT} chars)"
 
@@ -188,7 +191,7 @@ validate_commit_message() {
   # 5. Use the imperative mood in the subject line
   # ------------------------------------------------------------------------------
 
-  IMPERATIVE_MOOD_BLACKLIST=(
+  IMPERATIVE_MOOD_DENYLIST=(
     added          adds          adding
     adjusted       adjusts       adjusting
     amended        amends        amending
@@ -235,9 +238,9 @@ validate_commit_message() {
   # enable case insensitive match
   shopt -s nocasematch
 
-  for BLACKLISTED_WORD in "${IMPERATIVE_MOOD_BLACKLIST[@]}"; do
-    [[ ${COMMIT_SUBJECT_TO_PROCESS} =~ ^[[:blank:]]*$BLACKLISTED_WORD ]]
-    test $? -eq 0 && add_warning 1 "Use the imperative mood in the subject line, e.g 'fix' not 'fixes'" && break
+  for DENYLISTED_WORD in "${IMPERATIVE_MOOD_DENYLIST[@]}"; do
+    [[ ${COMMIT_SUBJECT_TO_PROCESS} =~ ^[[:blank:]]*$DENYLISTED_WORD ]]
+    test $? -eq 0 && add_warning 1 "Use the imperative mood in the subject line, e.g., 'fix' not 'fixes'" && break
   done
 
   # disable case insensitive match
@@ -265,6 +268,10 @@ validate_commit_message() {
   COMMIT_SUBJECT_WORDS=(${COMMIT_SUBJECT_TO_PROCESS})
   test "${#COMMIT_SUBJECT_WORDS[@]}" -gt 1
   test $? -eq 0 || add_warning 1 "Do no write single worded commits"
+
+  # 8a. Do not mention C source filenames
+  [[ ${COMMIT_SUBJECT_TO_PROCESS} =~ [_a-zA-Z0-9]+\.[ch]$ ]]
+  test $? -eq 1 || add_warning 1 "Avoid mentioning C source filenames"
 
   # 9. Do not start the subject line with whitespace
   # ------------------------------------------------------------------------------
