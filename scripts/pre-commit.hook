@@ -5,10 +5,10 @@ for f in *.c; do
     CPPCHECK_unmatched="$CPPCHECK_unmatched --suppress=unmatchedSuppression:$f"
 done
 
-CPPCHECK_suppresses="\
+CPPCHECK_suppresses=" \
 --suppress=missingIncludeSystem \
---suppress=noValidConfiguration \
---suppress=unusedFunction\
+--suppress=noValidConfiguration:fibdrv.c \
+--suppress=unusedFunction:fibdrv.c \
 "
 CPPCHECK_OPTS="-I. --enable=all --error-exitcode=1 --force $CPPCHECK_suppresses $CPPCHECK_unmatched ."
 
@@ -88,12 +88,6 @@ done
 if [ ! -z "${FILES[*]}" ]; then
     echo "Following files need to be cleaned up:"
     echo "${FILES[*]}"
-fi
-
-$SHA1SUM -c scripts/checksums >/dev/null
-if [ $? -ne 0 ]; then
-    echo "[!] You are not allowed to change the header file queue.h or list.h" >&2
-    exit 1
 fi
 
 # Prevent unsafe functions
