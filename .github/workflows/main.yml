@@ -1,0 +1,30 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  fibdrv-check:
+    runs-on: ubuntu-22.04
+    steps:
+    - uses: actions/checkout@v3.3.0
+    - name: install-dependencies
+      run: |
+            sudo apt-get update
+            sudo apt-get -q -y install build-essential cppcheck
+            sudo apt-get -q -y install linux-headers-`uname -r`
+    - name: make
+      run:  |
+            make
+    - name: make check
+      run: |
+            make check
+
+  coding-style:
+    runs-on: ubuntu-22.04
+    steps:
+    - uses: actions/checkout@v3.3.0
+    - name: coding convention
+      run: |
+            sudo apt-get install -q -y clang-format-14
+            sh .ci/check-format.sh
+      shell: bash
