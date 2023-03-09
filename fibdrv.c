@@ -30,12 +30,12 @@ static __uint128_t fib_sequence(int k)
         return k;
     __uint128_t a = 0, b = 1, t1, t2;
     int len = 32 - __builtin_clz(k);
-    for(; len > 0; len--){
+    for (; len > 0; len--) {
         t1 = a * (2 * b - a);
         t2 = b * b + a * a;
         a = t1;
         b = t2;
-        if((k >> (len - 1)) & 0x1){
+        if ((k >> (len - 1)) & 0x1) {
             t1 = a + b;
             a = b;
             b = t1;
