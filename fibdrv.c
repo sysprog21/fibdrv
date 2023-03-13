@@ -6,7 +6,7 @@
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/mutex.h>
-#include <>
+#include <linux/ktime.h>
 
 #include "bn_kernel.h"
 
