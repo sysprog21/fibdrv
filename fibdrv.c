@@ -17,26 +17,93 @@ MODULE_VERSION("0.1");
 /* MAX_LENGTH is set to 92 because
  * ssize_t can't fit the number > 92
  */
-#define MAX_LENGTH 92
+#define MAX_LENGTH 1000
 
 static dev_t fib_dev = 0;
 static struct cdev *fib_cdev;
 static struct class *fib_class;
 static DEFINE_MUTEX(fib_mutex);
 
-static long long fib_sequence(long long k)
+static void reverse(char *str)
 {
-    /* FIXME: C99 variable-length array (VLA) is not allowed in Linux kernel. */
-    long long f[k + 2];
+    int n = strlen(str);
+    for (int i = 0; i < n / 2; i++) {
+        char tmp = str[i];
+        str[i] = str[n - i - 1];
+        str[n - i - 1] = tmp;
+    }
+}
 
-    f[0] = 0;
-    f[1] = 1;
+static void sum(char *a, char *b, char *c)
+{
+    int na = strlen(a);
+    int nb = strlen(b);
+    int carry = 0, i = 0;
+    for (; i < min(na, nb); i++) {
+        int added = (a[i] - '0') + (b[i] - '0') + carry;
+        if (added >= 10) {
+            carry = 1;
+            added %= 10;
+        } else {
+            carry = 0;
+        }
+        c[i] = added + '0';
+    }
+    if (i < na) {
+        for (; i < na; i++) {
+            int added = (a[i] - '0') + carry;
+            if (added >= 10) {
+                carry = 1;
+                added %= 10;
+            } else {
+                carry = 0;
+            }
+            c[i] = added + '0';
+        }
+    } else if (i < nb) {
+        for (; i < nb; i++) {
+            int added = (b[i] - '0') + carry;
+            if (added >= 10) {
+                carry = 1;
+                added %= 10;
+            } else {
+                carry = 0;
+            }
+            c[i] = added + '0';
+        }
+    }
+    if (carry > 0) {
+        c[i] = carry + '0';
+    }
+}
 
-    for (int i = 2; i <= k; i++) {
-        f[i] = f[i - 1] + f[i - 2];
+static long long fib_sequence(long long k, char *buf)
+{
+    char f[3][256] = {0};
+
+    snprintf(f[0], sizeof(f[0]), "%d", 0);
+    snprintf(f[1], sizeof(f[1]), "%d", 1);
+    if (k < 2) {
+        if (copy_to_user(buf, f[k], sizeof(f[k]))) {
+            return -EFAULT;
+        }
+        return sizeof(f[k]);
     }
 
-    return f[k];
+    for (int i = 2; i <= k; i++) {
+        sum(f[0], f[1], f[2]);
+        memset(f[0], 0, sizeof(f[0]));
+        memcpy(f[0], f[1], sizeof(f[0]));
+        memset(f[1], 0, sizeof(f[1]));
+        memcpy(f[1], f[2], sizeof(f[1]));
+    }
+
+    reverse(f[2]);
+    if (copy_to_user(buf, f[2], sizeof(f[2]))) {
+        return -EFAULT;
+    }
+
+    return sizeof(f[2]);
 }
 
 static int fib_open(struct inode *inode, struct file *file)
@@ -60,7 +127,7 @@ static ssize_t fib_read(struct file *file,
                         size_t size,
                         loff_t *offset)
 {
-    return (ssize_t) fib_sequence(*offset);
+    return (ssize_t) fib_sequence(*offset, buf);
 }
 
 /* write operation is skipped */
