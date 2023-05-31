@@ -22,8 +22,7 @@ MODULE_VERSION("0.1");
 static dev_t fib_dev = 0;
 static struct class *fib_class;
 static DEFINE_MUTEX(fib_mutex);
-static int major = 0;
-static int minor = 0;
+static int major = 0, minor = 0;
 
 static long long fib_sequence(long long k)
 {
@@ -112,8 +111,7 @@ static int __init init_fib_dev(void)
 
     // Let's register the device
     // This will dynamically allocate the major number
-    major = register_chrdev(major, DEV_FIBONACCI_NAME, &fib_fops);
-    rc = major;
+    rc = major = register_chrdev(major, DEV_FIBONACCI_NAME, &fib_fops);
     if (rc < 0) {
         printk(KERN_ALERT "Failed to add cdev");
         rc = -2;
