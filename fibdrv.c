@@ -20,9 +20,9 @@ MODULE_VERSION("0.1");
 #define MAX_LENGTH 92
 
 static dev_t fib_dev = 0;
-static struct cdev *fib_cdev;
 static struct class *fib_class;
 static DEFINE_MUTEX(fib_mutex);
+static int major = 0, minor = 0;
 
 static long long fib_sequence(long long k)
 {
@@ -107,34 +107,17 @@ const struct file_operations fib_fops = {
 static int __init init_fib_dev(void)
 {
     int rc = 0;
-
     mutex_init(&fib_mutex);
 
     // Let's register the device
     // This will dynamically allocate the major number
-    rc = alloc_chrdev_region(&fib_dev, 0, 1, DEV_FIBONACCI_NAME);
-
-    if (rc < 0) {
-        printk(KERN_ALERT
-               "Failed to register the fibonacci char device. rc = %i",
-               rc);
-        return rc;
-    }
-
-    fib_cdev = cdev_alloc();
-    if (fib_cdev == NULL) {
-        printk(KERN_ALERT "Failed to alloc cdev");
-        rc = -1;
-        goto failed_cdev;
-    }
-    fib_cdev->ops = &fib_fops;
-    rc = cdev_add(fib_cdev, fib_dev, 1);
-
+    rc = major = register_chrdev(major, DEV_FIBONACCI_NAME, &fib_fops);
     if (rc < 0) {
         printk(KERN_ALERT "Failed to add cdev");
         rc = -2;
         goto failed_cdev;
     }
+    fib_dev = MKDEV(major, minor);
 
     fib_class = class_create(THIS_MODULE, DEV_FIBONACCI_NAME);
 
@@ -153,9 +136,8 @@ static int __init init_fib_dev(void)
 failed_device_create:
     class_destroy(fib_class);
 failed_class_create:
-    cdev_del(fib_cdev);
 failed_cdev:
-    unregister_chrdev_region(fib_dev, 1);
+    unregister_chrdev(major, DEV_FIBONACCI_NAME);
     return rc;
 }
 
@@ -164,8 +146,7 @@ static void __exit exit_fib_dev(void)
     mutex_destroy(&fib_mutex);
     device_destroy(fib_class, fib_dev);
     class_destroy(fib_class);
-    cdev_del(fib_cdev);
-    unregister_chrdev_region(fib_dev, 1);
+    unregister_chrdev(major, DEV_FIBONACCI_NAME);
 }
 
 module_init(init_fib_dev);
