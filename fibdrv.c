@@ -132,7 +132,7 @@ static int __init init_fib_dev(void)
         rc = -4;
         goto failed_device_create;
     }
-    return rc - major;
+    return rc;
 failed_device_create:
     class_destroy(fib_class);
 failed_class_create:
