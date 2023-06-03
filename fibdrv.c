@@ -42,7 +42,7 @@ static long long fib_sequence(long long k)
 static int fib_open(struct inode *inode, struct file *file)
 {
     if (!mutex_trylock(&fib_mutex)) {
-        printk(KERN_ALERT "fibdrv is in use");
+        printk(KERN_ALERT "fibdrv is in use\n");
         return -EBUSY;
     }
     return 0;
@@ -113,7 +113,7 @@ static int __init init_fib_dev(void)
     // This will dynamically allocate the major number
     rc = major = register_chrdev(major, DEV_FIBONACCI_NAME, &fib_fops);
     if (rc < 0) {
-        printk(KERN_ALERT "Failed to add cdev");
+        printk(KERN_ALERT "Failed to add cdev\n");
         rc = -2;
         goto failed_cdev;
     }
@@ -122,17 +122,17 @@ static int __init init_fib_dev(void)
     fib_class = class_create(THIS_MODULE, DEV_FIBONACCI_NAME);
 
     if (!fib_class) {
-        printk(KERN_ALERT "Failed to create device class");
+        printk(KERN_ALERT "Failed to create device class\n");
         rc = -3;
         goto failed_class_create;
     }
 
     if (!device_create(fib_class, NULL, fib_dev, NULL, DEV_FIBONACCI_NAME)) {
-        printk(KERN_ALERT "Failed to create device");
+        printk(KERN_ALERT "Failed to create device\n");
         rc = -4;
         goto failed_device_create;
     }
-    return rc;
+    return rc - major;
 failed_device_create:
     class_destroy(fib_class);
 failed_class_create:
