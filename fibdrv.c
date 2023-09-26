@@ -6,6 +6,7 @@
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/mutex.h>
+#include <linux/version.h>
 
 MODULE_LICENSE("Dual MIT/GPL");
 MODULE_AUTHOR("National Cheng Kung University, Taiwan");
@@ -118,9 +119,11 @@ static int __init init_fib_dev(void)
         goto failed_cdev;
     }
     fib_dev = MKDEV(major, minor);
-
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 4, 0)
+    fib_class = class_create(DEV_FIBONACCI_NAME);
+#else
     fib_class = class_create(THIS_MODULE, DEV_FIBONACCI_NAME);
-
+#endif
     if (!fib_class) {
         printk(KERN_ALERT "Failed to create device class\n");
         rc = -3;
