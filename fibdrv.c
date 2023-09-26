@@ -119,10 +119,10 @@ static int __init init_fib_dev(void)
         goto failed_cdev;
     }
     fib_dev = MKDEV(major, minor);
-#if LINUX_VERSION_CODE < KERNEL_VERSION(6, 4, 0)
-    fib_class = class_create(THIS_MODULE, DEV_FIBONACCI_NAME);
-#else
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 4, 0)
     fib_class = class_create(DEV_FIBONACCI_NAME);
+#else
+    fib_class = class_create(THIS_MODULE, DEV_FIBONACCI_NAME);
 #endif
     if (!fib_class) {
         printk(KERN_ALERT "Failed to create device class\n");
