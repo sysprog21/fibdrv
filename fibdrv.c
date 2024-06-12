@@ -6,6 +6,7 @@
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/mutex.h>
+#include <linux/slab.h>
 #include <linux/version.h>
 
 MODULE_LICENSE("Dual MIT/GPL");
@@ -25,10 +26,18 @@ static struct class *fib_class;
 static DEFINE_MUTEX(fib_mutex);
 static int major = 0, minor = 0;
 
+/**
+ * fib_sequence() - Calculate the k-th Fibonacci number
+ * @k:     Index of the Fibonacci number to calculate
+ *
+ * Return: The k-th Fibonacci number on success, -ENOMEM on memory allocation
+ * failure.
+ */
 static long long fib_sequence(long long k)
 {
-    /* FIXME: C99 variable-length array (VLA) is not allowed in Linux kernel. */
-    long long f[k + 2];
+    long long *f = kmalloc(sizeof(*f) * (k + 2), GFP_KERNEL);
+    if (!f)
+        return -ENOMEM;
 
     f[0] = 0;
     f[1] = 1;
@@ -37,7 +46,11 @@ static long long fib_sequence(long long k)
         f[i] = f[i - 1] + f[i - 2];
     }
 
-    return f[k];
+    long long ret = f[k];
+
+    kfree(f);
+
+    return ret;
 }
 
 static int fib_open(struct inode *inode, struct file *file)
