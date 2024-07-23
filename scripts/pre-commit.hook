@@ -9,6 +9,7 @@ CPPCHECK_suppresses=" \
 --suppress=missingIncludeSystem \
 --suppress=noValidConfiguration:fibdrv.c \
 --suppress=unusedFunction:fibdrv.c \
+--suppress=constParameterCallback:fibdrv.c \
 "
 CPPCHECK_OPTS="-I. --enable=all --error-exitcode=1 --force $CPPCHECK_suppresses $CPPCHECK_unmatched ."
 
