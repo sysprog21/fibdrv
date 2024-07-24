@@ -4,7 +4,10 @@ on: [push, pull_request]
 
 jobs:
   fibdrv-check:
-    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        os: [ubuntu-22.04, ubuntu-24.04]
+    runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v3.3.0
     - name: install-dependencies
@@ -20,7 +23,10 @@ jobs:
             make check
 
   coding-style:
-    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        os: [ubuntu-22.04, ubuntu-24.04]
+    runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v3.3.0
     - name: coding convention
