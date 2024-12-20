@@ -33,9 +33,9 @@ static int major = 0, minor = 0;
  * Return: The k-th Fibonacci number on success, -ENOMEM on memory allocation
  * failure.
  */
-static long long fib_sequence(long long k)
+static uint64_t fib_sequence(uint64_t k)
 {
-    long long *f = kmalloc(sizeof(*f) * (k + 2), GFP_KERNEL);
+    uint64_t *f = kmalloc(sizeof(*f) * (k + 2), GFP_KERNEL);
     if (!f)
         return -ENOMEM;
 
@@ -46,7 +46,7 @@ static long long fib_sequence(long long k)
         f[i] = f[i - 1] + f[i - 2];
     }
 
-    long long ret = f[k];
+    uint64_t ret = f[k];
 
     kfree(f);
 
